@@ -13,31 +13,22 @@
     
     // 2) focus the editor and collapse cursor at end
     editor.focus();
-    const sel = window.getSelection();                           // :contentReference[oaicite:2]{index=2}
+    const sel = window.getSelection();
     sel.removeAllRanges();
-    const range = document.createRange();                         // :contentReference[oaicite:3]{index=3}
+    const range = document.createRange();
     range.selectNodeContents(editor);
-    range.collapse(false);  // move caret to end
+    range.collapse(false);
     sel.addRange(range);
     
     // 3) insert text via execCommand
-    const prompt = `Help me translate the following vocabulary into Traditional Chinese. 
-    Please show the English word, its Chinese translation, its English and Chinese synonyms and antonyms. 
-    For each vocabulary word (include the original vocabulary), synonym, and antonym, provide one example sentence. 
-    The output should be concise and clean without unnecessary bullet points or sentences like "Here is your …" or "Do you need?" or "Would you like ?". 
-    The output should look like:
-    **{original vocab}** {translated text} (original) {example sentence}{translated sentence}
-    **{synonym}** {translated text} (synonym) {example sentence} {translated sentence}
-    **{antonym}** {translated text} (antonym) {example sentence} {translated sentence}
-    vocabulary: `;
+    const template = window.__PROMPT_TEMPLATE || '';
+    const textToInsert = template + (window.__SELECTED_TEXT || '');
 
-    const text = prompt + window.__SELECTED_TEXT;
-
-    document.execCommand('insertText', false, text);              // :contentReference[oaicite:4]{index=4}
-    console.log('[ChatGPT Extension] execCommand inserted text:', text);
+    document.execCommand('insertText', false, textToInsert);
+    console.log('[ChatGPT Extension] execCommand inserted text:', textToInsert);
 
     // 4) notify the editor of the change
-    editor.dispatchEvent(new InputEvent('input', { bubbles: true }));  // :contentReference[oaicite:5]{index=5}
+    editor.dispatchEvent(new InputEvent('input', { bubbles: true }));
     console.log('[ChatGPT Extension] input event dispatched');
   
     // 5) Wait for the existing “Send” button to appear
