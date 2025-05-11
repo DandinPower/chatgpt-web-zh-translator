@@ -2,12 +2,12 @@
 
 ## Introduction
 
-A minimal Chrome Extension that lets you right‑click any **English** word, phrase **or paragraph** on the web and instantly open ChatGPT with a pre‑formatted prompt that:
+A minimal Chrome Extension that lets you right‑click any **word**, **phrase** or **paragraph** on the web and instantly open ChatGPT with a pre‑formatted prompt that:
 
 * **Vocabulary mode** – translates the selected word into Traditional Chinese and returns synonyms, antonyms, and example sentences.
 * **Paragraph mode** – produces a fluent Traditional‑Chinese rendition of the whole selection, picking context‑appropriate terms.
 
-No data is stored, no external APIs are called – everything happens inside the ChatGPT tab that the extension opens for you.
+No login, no data storage, and no external API calls — everything runs entirely within the ChatGPT tab opened by the extension.
 
 ## Repository Layout
 
