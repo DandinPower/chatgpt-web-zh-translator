@@ -23,7 +23,7 @@ No data is stored, no external APIs are called – everything happens inside the
 1. **Clone** or download this repo
 
    ```bash
-   git clone https://github.com/<your‑github‑handle>/dandinpower-chatgpt-web-zh-translator.git
+   git clone https://github.com/DandinPower/chatgpt-web-zh-translator.git
    ```
 2. Open **chrome://extensions** in your browser.
 3. Enable **Developer mode** (toggle in the top‑right).
