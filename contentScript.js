@@ -1,15 +1,15 @@
 (function main() {
-    
-    console.log("[ChatGPT Extension] Script started");
+  
+    console.log("[ChatGPT Web ZH Translator] Script started");
     
     // 1) Find the ProseMirror editor
     const editor = document.getElementById('prompt-textarea')
     || document.querySelector('.ProseMirror');
     if (!editor) {
-        console.log("[ChatGPT Extension] Editor not found, retrying...");
+        console.log("[ChatGPT Web ZH Translator] Editor not found, retrying...");
         return setTimeout(main, 300);
     }
-    console.log("[ChatGPT Extension] Editor found:", editor);
+    console.log("[ChatGPT Web ZH Translator] Editor found:", editor);
     
     // 2) focus the editor and collapse cursor at end
     editor.focus();
@@ -25,33 +25,33 @@
     const textToInsert = template + (window.__SELECTED_TEXT || '');
 
     document.execCommand('insertText', false, textToInsert);
-    console.log('[ChatGPT Extension] execCommand inserted text:', textToInsert);
+    console.log('[ChatGPT Web ZH Translator] execCommand inserted text:', textToInsert);
 
     // 4) notify the editor of the change
     editor.dispatchEvent(new InputEvent('input', { bubbles: true }));
-    console.log('[ChatGPT Extension] input event dispatched');
+    console.log('[ChatGPT Web ZH Translator] input event dispatched');
   
     // 5) Wait for the existing “Send” button to appear
     const observerTarget = editor.parentElement;
     if (!observerTarget) {
-      console.warn("[ChatGPT Extension] Could not find parent element to observe");
+      console.warn("[ChatGPT Web ZH Translator] Could not find parent element to observe");
       return;
     }
-    console.log("[ChatGPT Extension] Setting up MutationObserver on", observerTarget);
+    console.log("[ChatGPT Web ZH Translator] Setting up MutationObserver on", observerTarget);
   
     const observer = new MutationObserver((mutations, obs) => {
       const sendBtn = document.querySelector('button[data-testid="send-button"]');
       if (sendBtn) {
-        console.log("[ChatGPT Extension] Send button detected:", sendBtn);
+        console.log("[ChatGPT Web ZH Translator] Send button detected:", sendBtn);
         sendBtn.click();
-        console.log("[ChatGPT Extension] Send button clicked");
+        console.log("[ChatGPT Web ZH Translator] Send button clicked");
         obs.disconnect();
       } else {
-        console.log("[ChatGPT Extension] Send button not yet present, still observing...");
+        console.log("[ChatGPT Web ZH Translator] Send button not yet present, still observing...");
       }
     });
   
     observer.observe(observerTarget, { childList: true, subtree: true });
-    console.log("[ChatGPT Extension] MutationObserver started");
+    console.log("[ChatGPT Web ZH Translator] MutationObserver started");
   })();
   

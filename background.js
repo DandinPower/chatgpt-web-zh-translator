@@ -37,12 +37,10 @@ chrome.runtime.onInstalled.addListener(() => {
     if (!promptConfig || !info.selectionText) return;
   
     chrome.tabs.create({ url: 'https://chat.openai.com/chat' }, (newTab) => {
-      // wait for it to load
       chrome.tabs.onUpdated.addListener(function listener(tabId, changeInfo) {
         if (tabId === newTab.id && changeInfo.status === 'complete') {
           chrome.tabs.onUpdated.removeListener(listener);
-  
-          // inject both the selected text and the template
+
           chrome.scripting.executeScript({
             target: { tabId: newTab.id },
             func: (text, template) => {
